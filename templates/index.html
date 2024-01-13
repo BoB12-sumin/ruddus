@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>about</title>
+    <meta charset="UTF-8">
+    <!-- 여기에 다른 메타 태그, CSS 파일 링크, 스크립트 등을 추가할 수 있습니다 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>list 목록</h2>
+    {% for user in content %}
+    {% if user== 'a'%}
+        <h2>{{user}}</h2>
+    {% endif%}
+    <li>{{user}}</li>        
+    {% endfor %}
+
+    <img src="{{ url_for('static', filename='cat.jpg') }}">
+
+    <img src="{{ url_for('static', filename='cat2.jpg') }}">
+
+
+    
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CLI Simulator</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    </head>
+    <body>
+        <h1>SUM'S Capture The Flag</h1>
+        <p>
+            DOS 공격자 탐지: DOS 공격으로 DOS 공격중 어떤 공격인지, 공격자는 무엇인지 찾는다.
+        </p>
+        <div class="terminal">    
+            <div class="line">
+                <div class="prompt">$</div>
+                <form action="/simulate" method="post">
+                    <input type="text" id="command" name="command" class="command-input" autofocus />
+                </form>
+            </div>
+            {% if result %}
+            <div class="line result">
+                <pre>{{ result }}</pre>
+            </div>
+            {% endif %} {% if command %}
+            <div class="line result">
+                <div class="prompt">$ {{ command }}</div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="button-conatiner">
+            <button onclick="openModal()">정답 입력</button>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <p class="modalp">🚩answer</p>
+                <input type="text" id="answer" name="answer" class="answer-input" autofocus />
+                <div class="button-conatiner">
+                    <button onclick="checkMacAddress()" value="{{ answer }}">제출</button>
+                </div>
+            </div>
+
+        <script>
+            function openModal() {
+                document.getElementById("myModal").style.display = "block";
+            }
+            function closeModal() {
+                document.getElementById("myModal").style.display = "none";
+            }
+
+            function checkMacAddress() {
+                var macAddress = document.getElementById("answer").value;
+                fetch('/answer', {
+                    method: 'POST',
+                    // 폼 데이터 형태로(키, value)  전달
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'macAddress=' + encodeURIComponent(macAddress)
+                })
+                .then((Response) => Response.json())
+                .then((data)=> {
+                    alert(data.result);
+                })
+            }
+        </script>
+    </body>
+</html>
