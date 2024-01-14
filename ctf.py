@@ -263,31 +263,37 @@ def execute_command(command):
 def do_simulation(command):
     if "ifconfig" in command:
         result = get_ifconfig_result()
+        time.sleep(2)
         return result
 
     elif "ping" in command:
         ip_address = command.split(" ")[-1]
-        time.sleep(3)
+        time.sleep(5)
         result = ping_command(ip_address)
         return result
 
     elif "arp" in command:
         if "arp -a" == command:
             result = get_arp_a()
+            time.sleep(2)
             return result
         elif "arp -d" == command:
             result = get_arp_d()
+            time.sleep(2)
             return result
 
     elif "ls" in command:
         if "ls" == command:
             result = get_ls()
+            time.sleep(1)
             return result
         elif "ls -l" == command:
             result = get_ls_l()
+            time.sleep(1)
             return result
         elif "ls -al" or "ls -la" == command:
             result = get_ls_al()
+            time.sleep(1)
             return result
 
     elif "tcpdump" in command:

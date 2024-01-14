@@ -14,8 +14,10 @@
         <div class="terminal">    
             <div class="line">
                 <div class="prompt">$</div>
-                <form action="/simulate" method="post">
-                    <input type="text" id="command" name="command" class="command-input" autofocus />
+                <form action="/simulate" method="post" class="form">
+                    <div class="command-input">
+                        <input type="text" id="command" name="command" autofocus />
+                    </div>  
                 </form>
             </div>
             {% if result %}
