@@ -305,7 +305,7 @@ def do_simulation(command):
             result = get_tcpdump_no_result()
         return result
 
-    elif "time" in command:
+    elif command == "time":
         result = execute_command("time")
         return result
 
