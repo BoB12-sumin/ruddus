@@ -36,10 +36,23 @@
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
+            
                 <p class="modalp">🚩answer</p>
-                <input type="text" id="answer" name="answer" class="answer-input" autofocus />
-                <div class="button-conatiner">
-                    <button onclick="checkMacAddress()" value="{{ answer }}">제출</button>
+               
+
+                <div class="modal-submit">
+                    <div class="modal-col">
+                        <label>공격종류: </label>
+                        <input type="text" id="answer1" name="answer1" class="answer-input" autofocus />
+                    </div>
+                    <div class="modal-col">
+                        <label>공격자: </label>
+                        <input type="text" id="answer2" name="answer2" class="answer-input" autofocus />
+                    </div>
+                    <br>
+                    <div class="button-conatiner">
+                        <button onclick="SubmitEvent()" value="{{ answer1, answer2 }}">제출</button>
+                    </div>
                 </div>
             </div>
 
@@ -51,15 +64,17 @@
                 document.getElementById("myModal").style.display = "none";
             }
 
-            function checkMacAddress() {
-                var macAddress = document.getElementById("answer").value;
+            function SubmitEvent() {
+                var attackType = document.getElementById("answer1").value;
+                var attacker = document.getElementById("answer2").value;
                 fetch('/answer', {
                     method: 'POST',
                     // 폼 데이터 형태로(키, value)  전달
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: 'macAddress=' + encodeURIComponent(macAddress)
+                    body: 'attackType=' + encodeURIComponent(attackType)
+                    + '&attacker=' + encodeURIComponent(attacker)
                 })
                 .then((Response) => Response.json())
                 .then((data)=> {
