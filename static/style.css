@@ -110,11 +110,25 @@ body {
     cursor: pointer;
 }
 
-/* 버튼을 중앙에 배치하기 위한 스타일 */
-.button-container {
+.button-container button {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 10px;
+    width: auto;
+    padding: 7px 10px;
+    background-color: #3064D6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 10px;
+    height: auto;
+}
+
+.button-container button:hover {
+    background-color: #1E4DC7;
 }
 
 .instructions {
@@ -135,4 +149,15 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif; 
+}
+
+h1 {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif; 
+}
+
+.blue-text {
+    color: #3064D6;
 }

@@ -305,7 +305,7 @@ def simulate():
     return render_template("ctfindex.html", command=command, result=result)
 
 
-correct_answer1 = "SYN FLOODING"
+correct_answer1 = "SYN FLOODING ATTACK"
 correct_answer2 = "192.168.81.135"
 
 

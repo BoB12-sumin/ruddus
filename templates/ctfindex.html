@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     </head>
     <body>
-        <h1>SUM'S Capture The Flag</h1>
+        <h1><span class="blue-text">SUM</span>'S Capture The Flag</h1>
         <p>
             DOS 공격자 탐지: DOS 공격으로 DOS 공격중 어떤 공격인지, 공격자는 무엇인지 찾는다.
         </p>
@@ -29,7 +29,7 @@
             {% endif %}
         </div>
 
-        <div class="button-conatiner">
+        <div class="button-container">
             <button onclick="openModal()">정답 입력</button>
         </div>
 
@@ -38,19 +38,18 @@
                 <span class="close" onclick="closeModal()">&times;</span>
             
                 <p class="modalp">🚩answer</p>
-               
 
                 <div class="modal-submit">
                     <div class="modal-col">
                         <label>공격종류: </label>
-                        <input type="text" id="answer1" name="answer1" class="answer-input" autofocus />
+                        <input type="text" id="answer1" name="answer1" class="answer-input" placeholder="??? ??? Attack" autofocus />
                     </div>
                     <div class="modal-col">
                         <label>공격자: </label>
-                        <input type="text" id="answer2" name="answer2" class="answer-input" autofocus />
+                        <input type="text" id="answer2" name="answer2" class="answer-input" placeholder="IP 주소 입력" autofocus />
                     </div>
                     <br>
-                    <div class="button-conatiner">
+                    <div class="button-container">
                         <button onclick="SubmitEvent()" value="{{ answer1, answer2 }}">제출</button>
                     </div>
                 </div>
