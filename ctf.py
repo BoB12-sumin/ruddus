@@ -5,7 +5,7 @@ from flask import jsonify
 
 app = Flask(__name__)
 
-allowed_command_list = ["tcpdump", "ls", "arp", "ifconfig", "ping"]
+allowed_command_list = ["tcpdump", "ls", "arp", "ifconfig", "ping", "time"]
 
 # "hping3" 사용한 Syn Flooding 공격,
 
@@ -230,6 +230,18 @@ def get_ls_al():
     """
 
 
+def ping_command(ip_address):
+    return f"""
+    PING {ip_address} ({ip_address}) 56(84) bytes of data.
+    64 bytes from {ip_address}: icmp_seq=1 ttl=128 time=1522 ms
+    64 bytes from {ip_address}: icmp_seq=4 ttl=128 time=1451 ms
+
+    --- {ip_address} ping statistics ---
+    15 packets transmitted, 2 received, 86.6667% packet loss, time 14368ms
+    rtt min/avg/max/mdev = 1450.846/1486.612/1522.379/35.766 ms, pipe 2
+"""
+
+
 def execute_command(command):
     try:
         result = subprocess.check_output(
@@ -251,6 +263,12 @@ def execute_command(command):
 def do_simulation(command):
     if "ifconfig" in command:
         result = get_ifconfig_result()
+        return result
+
+    elif "ping" in command:
+        ip_address = command.split(" ")[-1]
+        time.sleep(3)
+        result = ping_command(ip_address)
         return result
 
     elif "arp" in command:
@@ -287,8 +305,9 @@ def do_simulation(command):
             result = get_tcpdump_no_result()
         return result
 
-    elif "ping" in command:
-        return execute_command(command)
+    elif "time" in command:
+        result = execute_command("time")
+        return result
 
     return "입력명령어 처리 예정"
 
